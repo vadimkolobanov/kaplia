@@ -1,0 +1,76 @@
+# --- Android / Gradle ---
+*.iml
+.gradle/
+local.properties
+.idea/
+.DS_Store
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Generated
+gen/
+out/
+
+# --- Keystore / secrets ---
+*.jks
+*.keystore
+keystore.properties
+google-services.json
+GoogleService-Info.plist
+*.p8
+
+# --- Logs ---
+*.log
+hs_err_pid*
+
+# --- Kotlin / JVM ---
+.kotlin/
+
+# --- OS ---
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- VS Code ---
+.vscode/
+
+# --- Claude Code local session state ---
+.claude/
+
+# --- Local docs source files (DOCX — source of truth is markdown) ---
+*.docx
+~$*.docx
+
+# --- Env / credentials ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# --- Coverage / reports ---
+*.lcov
+coverage/
+.nyc_output/
+
+# --- Node (для backend/cloudflare-worker) ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+dist/
+.wrangler/
+
+# --- Python (если будут eval-скрипты) ---
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/

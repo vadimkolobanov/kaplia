@@ -1,0 +1,62 @@
+name: Android CI
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build + Lint + Unit tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        if: hashFiles('gradlew') != ''
+        run: chmod +x ./gradlew
+
+      - name: ktlint
+        if: hashFiles('gradlew') != ''
+        run: ./gradlew ktlintCheck --no-daemon
+
+      - name: detekt
+        if: hashFiles('gradlew') != ''
+        run: ./gradlew detekt --no-daemon
+
+      - name: Unit tests
+        if: hashFiles('gradlew') != ''
+        run: ./gradlew testDebugUnitTest --no-daemon
+
+      - name: Assemble debug APK
+        if: hashFiles('gradlew') != ''
+        run: ./gradlew assembleDebug --no-daemon
+
+      - name: Upload test reports
+        if: always() && hashFiles('gradlew') != ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            app/build/reports/tests/
+            app/build/reports/ktlint/
+            app/build/reports/detekt/
+
+      - name: No-op (pre-Gradle phase)
+        if: hashFiles('gradlew') == ''
+        run: echo "Gradle wrapper не найден — пайплайн запустится после INFRA-issue 'Android CI'."
