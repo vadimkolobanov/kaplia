@@ -40,8 +40,11 @@ Desktop.ini
 # --- VS Code ---
 .vscode/
 
-# --- Claude Code local session state ---
-.claude/
+# --- Claude Code ---
+# Локальная сессия и личные настройки — игнорим
+.claude/settings.local.json
+.claude/*.local.json
+# Команды и shared-настройки — в git, чтобы все контрибьюторы получили одинаковые правила
 
 # --- Local docs source files (DOCX — source of truth is markdown) ---
 *.docx
