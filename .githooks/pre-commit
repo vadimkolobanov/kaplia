@@ -1,0 +1,6 @@
+#!/bin/sh
+# Runs ktlint before every commit. Install once: git config core.hooksPath .githooks
+set -e
+echo "Running ktlint..."
+./gradlew ktlintCheck --daemon -q
+echo "ktlint passed."

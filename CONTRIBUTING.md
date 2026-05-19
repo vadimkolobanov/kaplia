@@ -51,6 +51,15 @@ fix(llm): тайм-аут запроса увеличен до 5s
 docs(adr): зафиксировать решение по permadeath с 8-го дня
 ```
 
+## Локальная настройка (один раз)
+
+```bash
+git config core.hooksPath .githooks   # включить pre-commit хук с ktlint
+```
+
+После этого `ktlintCheck` будет запускаться автоматически перед каждым коммитом.
+Если надо пропустить в исключительном случае: `git commit --no-verify`.
+
 ## Перед открытием PR
 
 - [ ] Локально проходит `./gradlew ktlintCheck detekt testDebugUnitTest`
