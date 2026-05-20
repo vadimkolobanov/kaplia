@@ -72,6 +72,9 @@ yarn-error.log*
 dist/
 .wrangler/
 
+# --- Local drafts ---
+tamagotchi-concept.md
+
 # --- Python (если будут eval-скрипты) ---
 __pycache__/
 *.pyc
