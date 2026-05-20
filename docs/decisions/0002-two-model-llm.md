@@ -39,7 +39,18 @@ Routing-логика в `backend/cloudflare-worker/`, событие выбор�
 - Тестирование: нужны eval-сеты на оба tier
 - Мониторинг качества: ratio Sonnet/Haiku должен быть зафиксирован
 
+## Статус реализации
+
+| Компонент | Статус |
+|-----------|--------|
+| Two-tier routing логика | ⏳ pending — `backend/cloudflare-worker/` не создан |
+| Sanitization-слой (PII, safety guardrails) | ⏳ pending — реализация требует отдельного issue |
+| `llm_tier` событие в Crashlytics | ⏳ pending — ждёт Firebase (#37) и Worker (#38→backend) |
+| Haiku / Sonnet клиент в `llm/` | ⏳ pending — модуль пустой |
+
+> Это не изменение решения — routing-стратегия остаётся в силе. Таблица отражает фактическое состояние реализации на pre-MVP фазе.
+
 ## Ссылки
 
-- Issue: #
+- Issue: #33 (статус реализации), #8 (системные промпты)
 - ТЗ § LLM
