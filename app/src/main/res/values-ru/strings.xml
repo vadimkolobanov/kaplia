@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Kaplia</string>
+    <string name="app_name">Капля</string>
 
     <!-- Onboarding -->
     <string name="onboarding_welcome_title">Привет</string>

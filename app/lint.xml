@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <!-- Hardcoded text in layouts must go through strings.xml -->
+    <issue id="HardcodedText" severity="error" />
+    <!-- Enforce translation completeness — missing translation = error -->
+    <issue id="MissingTranslation" severity="error" />
+    <!-- Extra translations (EN/RU defined but missing in default) = warning -->
+    <issue id="ExtraTranslation" severity="warning" />
+</lint>

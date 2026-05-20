@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Kaplia</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">Hello</string>
+    <string name="onboarding_welcome_subtitle">This is Kaplia — a creature that grows with you</string>
+    <string name="onboarding_age_gate_title">Are you 18 or older?</string>
+    <string name="onboarding_age_gate_confirm">Yes, I\'m 18+</string>
+    <string name="onboarding_age_gate_deny">No</string>
+    <string name="onboarding_age_gate_blocked">This app is for users 18 and older</string>
+
+    <!-- Common -->
+    <string name="action_continue">Continue</string>
+    <string name="action_back">Back</string>
+    <string name="action_close">Close</string>
+</resources>
