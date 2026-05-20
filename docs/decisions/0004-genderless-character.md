@@ -24,7 +24,7 @@
 Выбор местоимения:
 - сохраняется в Room
 - передаётся в LLM system prompt как обязательное поле
-- управляет всеми UI-строками через `pluralResource`/`stringResource` с заполнением
+- управляет всеми UI-строками через `pluralStringResource`/`stringResource` с заполнением
 
 ## Последствия
 
