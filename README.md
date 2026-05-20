@@ -25,7 +25,7 @@ Roadmap и фазы — в issues, сгруппированы по milestones.
 
 | Слой         | Технология                                           |
 |--------------|------------------------------------------------------|
-| Платформа    | Android (minSdk 26, targetSdk 34)                    |
+| Платформа    | Android (minSdk 26, targetSdk 36)                    |
 | Язык         | Kotlin                                                |
 | UI           | Jetpack Compose                                       |
 | Архитектура  | Clean + MVI                                           |
