@@ -8,6 +8,7 @@
 |---|---|
 | `/feature <issue-number>` | Создать новую feature-ветку от свежего `develop` по conventions проекта |
 | `/ship` | Diff-ревью → commit (Conventional Commits) → push → PR в `develop` с `Closes #N` |
+| `/control` | **Глубокий read-only аудит на Opus 4.7.** Ищет галлюцинации, расхождения дока↔код, утёкшие секреты, мёртвые ссылки, hardcode-строки. Только отчёт, без правок |
 
 ## Типичный flow
 
