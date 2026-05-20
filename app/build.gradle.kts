@@ -57,7 +57,6 @@ android {
         xmlReport = true
         htmlReport = true
         abortOnError = true
-        baseline = file("lint-baseline.xml")
     }
 }
 
