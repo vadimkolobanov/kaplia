@@ -3,7 +3,6 @@ package com.kaplia
 import android.app.Application
 
 class KapliaApplication : Application() {
-
     override fun onCreate() {
         super.onCreate()
         // Firebase.initialize(this) — after google-services.json added (#37)
