@@ -63,7 +63,7 @@ git config core.hooksPath .githooks   # включить pre-commit хук с kt
 ## Перед открытием PR
 
 - [ ] Локально проходит `./gradlew ktlintCheck detekt testDebugUnitTest`
-- [ ] Покрытие тестами для domain-кода ≥ 70%
+- [ ] Domain-код покрыт тестами (порог ≥ 70% будет автоматически проверяться после настройки JaCoCo)
 - [ ] Нет хардкод-строк (всё через `strings.xml`, RU + EN)
 - [ ] Если меняется архитектура — обновили [ADR](docs/decisions/)
 - [ ] Если UI — приложили скриншот/видео
