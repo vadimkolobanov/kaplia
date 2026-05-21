@@ -39,6 +39,10 @@ jobs:
         if: hashFiles('gradlew') != ''
         run: ./gradlew detekt --no-daemon
 
+      - name: Android Lint
+        if: hashFiles('gradlew') != ''
+        run: ./gradlew lintDebug --no-daemon
+
       - name: Unit tests
         if: hashFiles('gradlew') != ''
         run: ./gradlew testDebugUnitTest --no-daemon
@@ -64,6 +68,8 @@ jobs:
             app/build/reports/tests/
             app/build/reports/ktlint/
             app/build/reports/detekt/
+            app/build/reports/lint-results-debug.html
+            app/build/reports/lint-results-debug.xml
 
       - name: No-op (pre-Gradle phase)
         if: hashFiles('gradlew') == ''
