@@ -19,7 +19,7 @@
 ## Статус
 
 🚧 **Pre-MVP / Phase 0** — настраиваем инфраструктуру, домен, лендинг, концепт-арт.
-Roadmap и фазы — в issues, сгруппированы по milestones.
+Полный план до публикации — в [docs/ROADMAP.md](docs/ROADMAP.md); задачи — в issues по milestones.
 
 ## Стек
 
@@ -59,6 +59,7 @@ tests/llm/           Eval-сеты для промптов
 
 ## Документация и решения
 
+- [Roadmap до публикации](docs/ROADMAP.md) — фазы, зависимости, порядок сборки
 - [Концепт продукта](docs/concept.md)
 - [ТЗ](docs/tz.md)
 - [Decision log (ADR)](docs/decisions/)
