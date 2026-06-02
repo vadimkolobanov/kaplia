@@ -10,5 +10,3 @@ trim_trailing_whitespace = true
 ktlint_function_naming_ignore_when_annotated_with = Composable
 # Compose modifier chains are intentionally multiline on the same line as `=`
 ktlint_standard_multiline-expression-wrapping = disabled
-# Import ordering: all non-stdlib first, then kotlin.** at the end
-ij_kotlin_imports_layout = *,java.**,javax.**,kotlin.**,^

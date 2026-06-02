@@ -61,7 +61,6 @@ import com.kaplia.ui.theme.TextMuted
 import com.kaplia.ui.theme.TextPrimary
 import com.kaplia.ui.theme.TextSecondary
 import kotlinx.coroutines.delay
-
 import kotlin.math.PI
 import kotlin.math.sin
 
