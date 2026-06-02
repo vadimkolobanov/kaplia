@@ -359,13 +359,14 @@ private fun DeadOverlay(name: String) {
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
 @Composable
-private fun stageStatus(stage: LifecycleStage): String = stringResource(
-    when (stage) {
-        LifecycleStage.NEWBORN -> R.string.home_status_newborn
-        LifecycleStage.GROWING -> R.string.home_status_growing
-        LifecycleStage.MATURE -> R.string.home_status_mature
-        LifecycleStage.AGING -> R.string.home_status_aging
-        LifecycleStage.CRITICAL -> R.string.home_status_critical
-        LifecycleStage.DEAD -> R.string.home_status_dead
-    },
-)
+private fun stageStatus(stage: LifecycleStage): String =
+    stringResource(
+        when (stage) {
+            LifecycleStage.NEWBORN -> R.string.home_status_newborn
+            LifecycleStage.GROWING -> R.string.home_status_growing
+            LifecycleStage.MATURE -> R.string.home_status_mature
+            LifecycleStage.AGING -> R.string.home_status_aging
+            LifecycleStage.CRITICAL -> R.string.home_status_critical
+            LifecycleStage.DEAD -> R.string.home_status_dead
+        },
+    )

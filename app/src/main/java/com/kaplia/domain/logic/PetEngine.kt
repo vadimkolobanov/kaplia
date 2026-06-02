@@ -4,7 +4,6 @@ import com.kaplia.domain.model.LifecycleStage
 import com.kaplia.domain.model.Pet
 
 object PetEngine {
-
     private const val BASE_HUNGER_DECAY = 0.004f
     private const val BASE_ENERGY_DECAY = 0.003f
     private const val BASE_MOOD_DECAY = 0.002f
@@ -21,14 +20,15 @@ object PetEngine {
     private const val REST_ENERGY = 0.35f
     private const val REST_MOOD = 0.05f
 
-    fun computeStage(day: Int): LifecycleStage = when (day) {
-        in 1..3 -> LifecycleStage.NEWBORN
-        in 4..7 -> LifecycleStage.GROWING
-        in 8..15 -> LifecycleStage.MATURE
-        in 16..25 -> LifecycleStage.AGING
-        in 26..30 -> LifecycleStage.CRITICAL
-        else -> LifecycleStage.DEAD
-    }
+    fun computeStage(day: Int): LifecycleStage =
+        when (day) {
+            in 1..3 -> LifecycleStage.NEWBORN
+            in 4..7 -> LifecycleStage.GROWING
+            in 8..15 -> LifecycleStage.MATURE
+            in 16..25 -> LifecycleStage.AGING
+            in 26..30 -> LifecycleStage.CRITICAL
+            else -> LifecycleStage.DEAD
+        }
 
     fun tick(pet: Pet): Pet {
         if (pet.isDead) return pet
@@ -59,21 +59,24 @@ object PetEngine {
         )
     }
 
-    fun feed(pet: Pet): Pet = pet.copy(
-        hunger = (pet.hunger + FEED_HUNGER).coerceAtMost(1f),
-        mood = (pet.mood + FEED_MOOD).coerceAtMost(1f),
-    )
+    fun feed(pet: Pet): Pet =
+        pet.copy(
+            hunger = (pet.hunger + FEED_HUNGER).coerceAtMost(1f),
+            mood = (pet.mood + FEED_MOOD).coerceAtMost(1f),
+        )
 
-    fun play(pet: Pet): Pet = pet.copy(
-        mood = (pet.mood + PLAY_MOOD).coerceAtMost(1f),
-        energy = (pet.energy - PLAY_ENERGY_COST).coerceAtLeast(0f),
-        hunger = (pet.hunger - PLAY_HUNGER_COST).coerceAtLeast(0f),
-    )
+    fun play(pet: Pet): Pet =
+        pet.copy(
+            mood = (pet.mood + PLAY_MOOD).coerceAtMost(1f),
+            energy = (pet.energy - PLAY_ENERGY_COST).coerceAtLeast(0f),
+            hunger = (pet.hunger - PLAY_HUNGER_COST).coerceAtLeast(0f),
+        )
 
-    fun rest(pet: Pet): Pet = pet.copy(
-        energy = (pet.energy + REST_ENERGY).coerceAtMost(1f),
-        mood = (pet.mood + REST_MOOD).coerceAtMost(1f),
-    )
+    fun rest(pet: Pet): Pet =
+        pet.copy(
+            energy = (pet.energy + REST_ENERGY).coerceAtMost(1f),
+            mood = (pet.mood + REST_MOOD).coerceAtMost(1f),
+        )
 
     fun advanceDay(pet: Pet): Pet {
         val newDay = pet.day + 1
