@@ -1,16 +1,38 @@
 <resources>
     <string name="app_name">Kaplia</string>
 
-    <!-- Onboarding -->
-    <string name="onboarding_welcome_title">Привет</string>
-    <string name="onboarding_welcome_subtitle">Здесь живёт Капля — существо, которое растёт вместе с тобой</string>
-    <string name="onboarding_age_gate_title">Тебе уже исполнилось 18?</string>
-    <string name="onboarding_age_gate_confirm">Да, мне 18+</string>
-    <string name="onboarding_age_gate_deny">Нет</string>
-    <string name="onboarding_age_gate_blocked">Приложение доступно только с 18 лет</string>
+    <!-- Onboarding: welcome -->
+    <string name="onboarding_welcome_title">Hello</string>
+    <string name="onboarding_welcome_subtitle">Meet Kaplya — a creature that grows alongside you</string>
+    <string name="onboarding_welcome_cta">Meet Kaplya</string>
+
+    <!-- Onboarding: age gate -->
+    <string name="onboarding_age_gate_title">Are you 18 or older?</string>
+    <string name="onboarding_age_gate_confirm">Yes, I\'m 18+</string>
+    <string name="onboarding_age_gate_deny">No</string>
+    <string name="onboarding_age_gate_blocked">This app is available for ages 18+</string>
+
+    <!-- Onboarding: name + pronouns -->
+    <string name="onboarding_name_title">What will you call them?</string>
+    <string name="onboarding_name_hint">Name</string>
+    <string name="onboarding_pronoun_title">How should I refer to them?</string>
+    <string name="onboarding_pronoun_he">he / him</string>
+    <string name="onboarding_pronoun_she">she / her</string>
+    <string name="onboarding_pronoun_they">they / them</string>
+    <string name="onboarding_pronoun_it">it / its</string>
+    <string name="onboarding_hatch_cta">Hatch Kaplya</string>
+
+    <!-- Home -->
+    <string name="home_day_counter">Day %1$d of 30</string>
+    <string name="home_metric_hunger">Hunger</string>
+    <string name="home_metric_energy">Energy</string>
+    <string name="home_metric_mood">Mood</string>
+    <string name="home_metric_health">Health</string>
+    <string name="home_action_talk">Talk</string>
+    <string name="home_status_newborn">Just hatched! Still figuring out this world…</string>
 
     <!-- Common -->
-    <string name="action_continue">Продолжить</string>
-    <string name="action_back">Назад</string>
-    <string name="action_close">Закрыть</string>
+    <string name="action_continue">Continue</string>
+    <string name="action_back">Back</string>
+    <string name="action_close">Close</string>
 </resources>
