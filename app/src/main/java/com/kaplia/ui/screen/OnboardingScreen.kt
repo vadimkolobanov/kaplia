@@ -319,7 +319,11 @@ internal fun GradientButton(
 }
 
 @Composable
-private fun PronounChip(label: String, selected: Boolean, onClick: () -> Unit) {
+private fun PronounChip(
+    label: String,
+    selected: Boolean,
+    onClick: () -> Unit,
+) {
     val borderColor = if (selected) KapliaBlue else TextMuted.copy(alpha = 0.5f)
     val bgColor = if (selected) KapliaBlue.copy(alpha = 0.18f) else Color.Transparent
 
