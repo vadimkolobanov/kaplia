@@ -122,7 +122,10 @@ private fun buildBlobPath(
     }
 
     // Smooth closed curve: moveTo midpoint, quadratic through each control point
-    fun mid(a: Offset, b: Offset) = Offset((a.x + b.x) / 2f, (a.y + b.y) / 2f)
+    fun mid(
+        a: Offset,
+        b: Offset,
+    ) = Offset((a.x + b.x) / 2f, (a.y + b.y) / 2f)
 
     val path = Path()
     val startMid = mid(pointAt(numPts - 1), pointAt(0))

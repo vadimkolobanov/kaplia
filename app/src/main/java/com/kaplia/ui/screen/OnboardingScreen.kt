@@ -60,9 +60,9 @@ import com.kaplia.ui.theme.KapliaLavender
 import com.kaplia.ui.theme.TextMuted
 import com.kaplia.ui.theme.TextPrimary
 import com.kaplia.ui.theme.TextSecondary
+import kotlinx.coroutines.delay
 import kotlin.math.PI
 import kotlin.math.sin
-import kotlinx.coroutines.delay
 
 private enum class OnboardingStep { WELCOME, AGE_GATE, CUSTOMIZE }
 

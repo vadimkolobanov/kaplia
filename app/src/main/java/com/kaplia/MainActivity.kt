@@ -8,7 +8,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import com.kaplia.ui.model.Pronoun
 import com.kaplia.ui.screen.HomeScreen
 import com.kaplia.ui.screen.OnboardingScreen
 import com.kaplia.ui.screen.PetState
