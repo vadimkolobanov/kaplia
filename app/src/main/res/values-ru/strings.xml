@@ -1,13 +1,44 @@
 <resources>
     <string name="app_name">Капля</string>
 
-    <!-- Onboarding -->
+    <!-- Onboarding: welcome -->
     <string name="onboarding_welcome_title">Привет</string>
-    <string name="onboarding_welcome_subtitle">Здесь живёт Капля — существо, которое растёт вместе с тобой</string>
+    <string name="onboarding_welcome_subtitle">Знакомься — Капля. Существо, которое растёт вместе с тобой</string>
+    <string name="onboarding_welcome_cta">Познакомиться с Каплей</string>
+
+    <!-- Onboarding: age gate -->
     <string name="onboarding_age_gate_title">Тебе уже исполнилось 18?</string>
     <string name="onboarding_age_gate_confirm">Да, мне 18+</string>
     <string name="onboarding_age_gate_deny">Нет</string>
     <string name="onboarding_age_gate_blocked">Приложение доступно только с 18 лет</string>
+
+    <!-- Onboarding: name + pronouns -->
+    <string name="onboarding_name_title">Как ты назовёшь питомца?</string>
+    <string name="onboarding_name_hint">Имя</string>
+    <string name="onboarding_pronoun_title">Какие местоимения?</string>
+    <string name="onboarding_pronoun_he">он / его</string>
+    <string name="onboarding_pronoun_she">она / её</string>
+    <string name="onboarding_pronoun_they">они / их</string>
+    <string name="onboarding_pronoun_it">оно / его</string>
+    <string name="onboarding_hatch_cta">Вылупить Каплю</string>
+
+    <!-- Home -->
+    <string name="home_day_counter">День %1$d из 30</string>
+    <string name="home_metric_hunger">Голод</string>
+    <string name="home_metric_energy">Энергия</string>
+    <string name="home_metric_mood">Настроение</string>
+    <string name="home_metric_health">Здоровье</string>
+    <string name="home_action_talk">Поговорить</string>
+    <string name="home_action_feed">Покормить</string>
+    <string name="home_action_play">Поиграть</string>
+    <string name="home_action_rest">Отдохнуть</string>
+    <string name="home_action_next_day">+День</string>
+    <string name="home_status_newborn">Только что вылупилась! Ещё разбирается с этим миром…</string>
+    <string name="home_status_growing">Растёт и крепнет с каждым днём…</string>
+    <string name="home_status_mature">В расцвете сил — всё хорошо</string>
+    <string name="home_status_aging">Годы берут своё…</string>
+    <string name="home_status_critical">Время на исходе…</string>
+    <string name="home_status_dead">Ушла, но не забыта</string>
 
     <!-- Common -->
     <string name="action_continue">Продолжить</string>

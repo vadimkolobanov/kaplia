@@ -1,49 +1,35 @@
 package com.kaplia.ui.theme
 
-import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 
-private val DarkColorScheme =
+// Kaplia is always dark — the deep-space aesthetic is core to the brand.
+// Dynamic Material You colours would override this intentional palette.
+private val KaplaColorScheme =
     darkColorScheme(
-        primary = Purple80,
-        secondary = PurpleGrey80,
-        tertiary = Pink80,
-    )
-
-private val LightColorScheme =
-    lightColorScheme(
-        primary = Purple40,
-        secondary = PurpleGrey40,
-        tertiary = Pink40,
+        primary = KapliaBlue,
+        onPrimary = DeepSpace,
+        primaryContainer = KapliaBlueDark,
+        onPrimaryContainer = KapliaBlueLight,
+        secondary = KapliaLavender,
+        onSecondary = DeepSpace,
+        secondaryContainer = KapliaLavenderDark,
+        onSecondaryContainer = KapliaLavenderLight,
+        background = DeepSpace,
+        onBackground = TextPrimary,
+        surface = SpaceSurface,
+        onSurface = TextPrimary,
+        surfaceVariant = SpaceSurfaceVariant,
+        onSurfaceVariant = TextSecondary,
+        error = DangerRed,
+        onError = DeepSpace,
     )
 
 @Composable
-fun KapliaTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
-    content: @Composable () -> Unit,
-) {
-    val colorScheme =
-        when {
-            dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-                val context = LocalContext.current
-                if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-            }
-
-            darkTheme -> DarkColorScheme
-            else -> LightColorScheme
-        }
-
+fun KapliaTheme(content: @Composable () -> Unit) {
     MaterialTheme(
-        colorScheme = colorScheme,
+        colorScheme = KaplaColorScheme,
         typography = Typography,
         content = content,
     )
