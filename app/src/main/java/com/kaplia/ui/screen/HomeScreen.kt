@@ -89,7 +89,7 @@ fun HomeScreen(
 
             GradientButton(
                 text = stringResource(R.string.home_action_talk),
-                onClick = { /* TODO: open chat */ },
+                onClick = { },
                 modifier = Modifier.padding(horizontal = 32.dp),
             )
 
