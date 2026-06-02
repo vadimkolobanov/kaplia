@@ -29,7 +29,16 @@
     <string name="home_metric_mood">Настроение</string>
     <string name="home_metric_health">Здоровье</string>
     <string name="home_action_talk">Поговорить</string>
-    <string name="home_status_newborn">Только что вылупилась! Ещё разбираюсь с этим миром…</string>
+    <string name="home_action_feed">Покормить</string>
+    <string name="home_action_play">Поиграть</string>
+    <string name="home_action_rest">Отдохнуть</string>
+    <string name="home_action_next_day">+День</string>
+    <string name="home_status_newborn">Только что вылупилась! Ещё разбирается с этим миром…</string>
+    <string name="home_status_growing">Растёт и крепнет с каждым днём…</string>
+    <string name="home_status_mature">В расцвете сил — всё хорошо</string>
+    <string name="home_status_aging">Годы берут своё…</string>
+    <string name="home_status_critical">Время на исходе…</string>
+    <string name="home_status_dead">Ушла, но не забыта</string>
 
     <!-- Common -->
     <string name="action_continue">Продолжить</string>

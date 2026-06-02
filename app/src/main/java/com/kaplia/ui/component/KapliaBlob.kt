@@ -14,18 +14,38 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.lerp
+import com.kaplia.ui.theme.DangerRed
 import com.kaplia.ui.theme.KapliaBlue
 import com.kaplia.ui.theme.KapliaGlowCyan
 import kotlin.math.PI
 import kotlin.math.cos
 import kotlin.math.sin
 
+private val DeadGray = Color(0xFF3A3A4A)
+
+@Suppress("LongMethod")
 @Composable
 fun KapliaBlob(
     modifier: Modifier = Modifier,
     primaryColor: Color = KapliaBlue,
     glowColor: Color = KapliaGlowCyan,
+    healthFraction: Float = 1f,
 ) {
+    val health = healthFraction.coerceIn(0f, 1f)
+
+    val effectivePrimary = when {
+        health <= 0f -> DeadGray
+        health < 0.3f -> lerp(DangerRed, primaryColor, health / 0.3f)
+        else -> primaryColor
+    }
+    val effectiveGlow = when {
+        health <= 0f -> DeadGray
+        health < 0.3f -> lerp(DangerRed, glowColor, health / 0.3f)
+        else -> glowColor
+    }
+    val glowMult = if (health <= 0f) 0f else health.coerceAtLeast(0.25f)
+
     val transition = rememberInfiniteTransition(label = "kapliaBlob")
 
     val wobble1 by transition.animateFloat(
@@ -66,7 +86,7 @@ fun KapliaBlob(
         // Outer glow rings — layered for soft halo effect
         repeat(7) { i ->
             drawCircle(
-                color = glowColor.copy(alpha = 0.022f * (7 - i)),
+                color = effectiveGlow.copy(alpha = 0.022f * (7 - i) * glowMult),
                 radius = baseRadius * (1.08f + i * 0.14f),
                 center = Offset(cx, cy),
             )
@@ -77,28 +97,29 @@ fun KapliaBlob(
             path = buildBlobPath(cx, cy, baseRadius, wobble1, wobble2),
             brush = Brush.radialGradient(
                 colors = listOf(
-                    glowColor.copy(alpha = 0.9f),
-                    primaryColor,
-                    primaryColor.copy(alpha = 0.80f),
+                    effectiveGlow.copy(alpha = 0.9f),
+                    effectivePrimary,
+                    effectivePrimary.copy(alpha = 0.80f),
                 ),
                 center = Offset(cx - baseRadius * 0.15f, cy - baseRadius * 0.20f),
                 radius = baseRadius * 1.35f,
             ),
         )
 
-        // Primary specular highlight
-        drawCircle(
-            color = Color.White.copy(alpha = 0.20f),
-            radius = baseRadius * 0.28f,
-            center = Offset(cx - baseRadius * 0.28f, cy - baseRadius * 0.32f),
-        )
-
-        // Secondary micro-highlight
-        drawCircle(
-            color = Color.White.copy(alpha = 0.08f),
-            radius = baseRadius * 0.11f,
-            center = Offset(cx + baseRadius * 0.18f, cy - baseRadius * 0.44f),
-        )
+        if (health > 0f) {
+            // Primary specular highlight
+            drawCircle(
+                color = Color.White.copy(alpha = 0.20f * glowMult),
+                radius = baseRadius * 0.28f,
+                center = Offset(cx - baseRadius * 0.28f, cy - baseRadius * 0.32f),
+            )
+            // Secondary micro-highlight
+            drawCircle(
+                color = Color.White.copy(alpha = 0.08f * glowMult),
+                radius = baseRadius * 0.11f,
+                center = Offset(cx + baseRadius * 0.18f, cy - baseRadius * 0.44f),
+            )
+        }
     }
 }
 
@@ -121,7 +142,6 @@ private fun buildBlobPath(
         return Offset(cx + radius * cos(angle), cy + radius * sin(angle))
     }
 
-    // Smooth closed curve: moveTo midpoint, quadratic through each control point
     fun mid(
         a: Offset,
         b: Offset,

@@ -1,6 +1,8 @@
 package com.kaplia.ui.screen
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,8 +28,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kaplia.R
+import com.kaplia.domain.model.LifecycleStage
 import com.kaplia.ui.component.KapliaBlob
-import com.kaplia.ui.model.Pronoun
+import com.kaplia.ui.model.PetState
 import com.kaplia.ui.theme.DeepSpace
 import com.kaplia.ui.theme.KapliaBlue
 import com.kaplia.ui.theme.KapliaGlowCyan
@@ -42,96 +45,139 @@ import com.kaplia.ui.theme.TextMuted
 import com.kaplia.ui.theme.TextPrimary
 import com.kaplia.ui.theme.TextSecondary
 
-data class PetState(
-    val name: String,
-    val pronoun: Pronoun,
-    val day: Int = 1,
-    val hunger: Float = 0.75f,
-    val energy: Float = 0.82f,
-    val mood: Float = 0.88f,
-    val health: Float = 0.90f,
-)
-
 @Composable
-fun HomeScreen(pet: PetState) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(DeepSpace)
-            .statusBarsPadding()
-            .navigationBarsPadding(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-    ) {
-        // ── Top bar ──────────────────────────────────────────────────────────
-        DayCounter(day = pet.day)
+fun HomeScreen(
+    pet: PetState,
+    onFeed: () -> Unit,
+    onPlay: () -> Unit,
+    onRest: () -> Unit,
+    onNextDay: () -> Unit,
+) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(DeepSpace)
+                .statusBarsPadding()
+                .navigationBarsPadding(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            DayCounter(day = pet.day, onNextDay = onNextDay)
 
-        Spacer(Modifier.weight(1f))
+            Spacer(Modifier.weight(1f))
 
-        // ── Blob ─────────────────────────────────────────────────────────────
-        KapliaBlob(
-            modifier = Modifier.size(220.dp),
-            primaryColor = KapliaBlue,
-            glowColor = KapliaGlowCyan,
-        )
+            PetCharacter(
+                name = pet.name,
+                healthFraction = pet.health,
+                stage = pet.stage,
+            )
 
-        Spacer(Modifier.height(20.dp))
+            Spacer(Modifier.weight(1f))
 
-        // ── Pet name ─────────────────────────────────────────────────────────
-        Text(
-            text = pet.name,
-            color = TextPrimary,
-            fontSize = 26.sp,
-            fontWeight = FontWeight.Bold,
-        )
+            MetricsPanel(pet = pet)
 
-        Spacer(Modifier.height(8.dp))
+            Spacer(Modifier.height(16.dp))
 
-        // ── Status message ───────────────────────────────────────────────────
-        Text(
-            text = stringResource(R.string.home_status_newborn),
-            color = TextSecondary,
-            fontSize = 14.sp,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.padding(horizontal = 40.dp),
-            lineHeight = 20.sp,
-        )
+            ActionButtonsRow(
+                onFeed = onFeed,
+                onPlay = onPlay,
+                onRest = onRest,
+                modifier = Modifier.padding(horizontal = 24.dp),
+            )
 
-        Spacer(Modifier.weight(1f))
+            Spacer(Modifier.height(16.dp))
 
-        // ── Metrics ───────────────────────────────────────────────────────────
-        MetricsPanel(pet = pet)
+            GradientButton(
+                text = stringResource(R.string.home_action_talk),
+                onClick = { /* TODO: open chat */ },
+                modifier = Modifier.padding(horizontal = 32.dp),
+            )
 
-        Spacer(Modifier.height(24.dp))
+            Spacer(Modifier.height(32.dp))
+        }
 
-        // ── Talk button ───────────────────────────────────────────────────────
-        GradientButton(
-            text = stringResource(R.string.home_action_talk),
-            onClick = { /* TODO: open chat */ },
-            modifier = Modifier.padding(horizontal = 32.dp),
-        )
-
-        Spacer(Modifier.height(32.dp))
+        if (pet.isDead) {
+            DeadOverlay(name = pet.name)
+        }
     }
 }
 
 // ── Day counter ───────────────────────────────────────────────────────────────
 
 @Composable
-private fun DayCounter(day: Int) {
-    Box(
-        modifier = Modifier
-            .padding(top = 16.dp)
-            .clip(RoundedCornerShape(50))
-            .background(SpaceSurfaceVariant)
-            .padding(horizontal = 20.dp, vertical = 8.dp),
+private fun DayCounter(
+    day: Int,
+    onNextDay: () -> Unit,
+) {
+    Row(
+        modifier = Modifier.padding(top = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
-        Text(
-            text = stringResource(R.string.home_day_counter, day),
-            color = TextSecondary,
-            fontSize = 13.sp,
-            fontWeight = FontWeight.Medium,
-        )
+        Box(
+            modifier = Modifier
+                .clip(RoundedCornerShape(50))
+                .background(SpaceSurfaceVariant)
+                .padding(horizontal = 20.dp, vertical = 8.dp),
+        ) {
+            Text(
+                text = stringResource(R.string.home_day_counter, day),
+                color = TextSecondary,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Medium,
+            )
+        }
+        Box(
+            modifier = Modifier
+                .clip(RoundedCornerShape(50))
+                .background(KapliaBlue.copy(alpha = 0.20f))
+                .clickable { onNextDay() }
+                .padding(horizontal = 14.dp, vertical = 8.dp),
+        ) {
+            Text(
+                text = stringResource(R.string.home_action_next_day),
+                color = KapliaBlue,
+                fontSize = 13.sp,
+                fontWeight = FontWeight.Medium,
+            )
+        }
     }
+}
+
+// ── Pet character (blob + name + status) ─────────────────────────────────────
+
+@Composable
+private fun PetCharacter(
+    name: String,
+    healthFraction: Float,
+    stage: LifecycleStage,
+) {
+    KapliaBlob(
+        modifier = Modifier.size(220.dp),
+        primaryColor = KapliaBlue,
+        glowColor = KapliaGlowCyan,
+        healthFraction = healthFraction,
+    )
+
+    Spacer(Modifier.height(20.dp))
+
+    Text(
+        text = name,
+        color = TextPrimary,
+        fontSize = 26.sp,
+        fontWeight = FontWeight.Bold,
+    )
+
+    Spacer(Modifier.height(8.dp))
+
+    Text(
+        text = stageStatus(stage),
+        color = TextSecondary,
+        fontSize = 14.sp,
+        textAlign = TextAlign.Center,
+        modifier = Modifier.padding(horizontal = 40.dp),
+        lineHeight = 20.sp,
+    )
 }
 
 // ── Metrics panel ─────────────────────────────────────────────────────────────
@@ -200,7 +246,6 @@ private fun MetricBar(
             )
         }
         Spacer(Modifier.height(4.dp))
-        // Track
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -208,7 +253,6 @@ private fun MetricBar(
                 .clip(RoundedCornerShape(50))
                 .background(KapliaLavender.copy(alpha = 0.12f)),
         ) {
-            // Fill
             Box(
                 modifier = Modifier
                     .fillMaxWidth(value.coerceIn(0f, 1f))
@@ -219,3 +263,109 @@ private fun MetricBar(
         }
     }
 }
+
+// ── Action buttons ────────────────────────────────────────────────────────────
+
+@Composable
+private fun ActionButtonsRow(
+    onFeed: () -> Unit,
+    onPlay: () -> Unit,
+    onRest: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        ActionButton(
+            text = stringResource(R.string.home_action_feed),
+            onClick = onFeed,
+            modifier = Modifier.weight(1f),
+        )
+        ActionButton(
+            text = stringResource(R.string.home_action_play),
+            onClick = onPlay,
+            modifier = Modifier.weight(1f),
+        )
+        ActionButton(
+            text = stringResource(R.string.home_action_rest),
+            onClick = onRest,
+            modifier = Modifier.weight(1f),
+        )
+    }
+}
+
+@Composable
+private fun ActionButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Box(
+        modifier = modifier
+            .height(48.dp)
+            .clip(RoundedCornerShape(50))
+            .background(SpaceSurfaceHigh)
+            .border(1.dp, KapliaBlue.copy(alpha = 0.40f), RoundedCornerShape(50))
+            .clickable { onClick() },
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            text = text,
+            color = KapliaGlowCyan,
+            fontSize = 14.sp,
+            fontWeight = FontWeight.SemiBold,
+        )
+    }
+}
+
+// ── Death overlay ─────────────────────────────────────────────────────────────
+
+@Composable
+private fun DeadOverlay(name: String) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(DeepSpace),
+        contentAlignment = Alignment.Center,
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.padding(horizontal = 32.dp),
+        ) {
+            KapliaBlob(
+                modifier = Modifier.size(160.dp),
+                healthFraction = 0f,
+            )
+            Spacer(Modifier.height(24.dp))
+            Text(
+                text = name,
+                color = TextSecondary,
+                fontSize = 24.sp,
+                fontWeight = FontWeight.Bold,
+            )
+            Spacer(Modifier.height(8.dp))
+            Text(
+                text = stringResource(R.string.home_status_dead),
+                color = TextMuted,
+                fontSize = 15.sp,
+                textAlign = TextAlign.Center,
+                lineHeight = 22.sp,
+            )
+        }
+    }
+}
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+@Composable
+private fun stageStatus(stage: LifecycleStage): String = stringResource(
+    when (stage) {
+        LifecycleStage.NEWBORN -> R.string.home_status_newborn
+        LifecycleStage.GROWING -> R.string.home_status_growing
+        LifecycleStage.MATURE -> R.string.home_status_mature
+        LifecycleStage.AGING -> R.string.home_status_aging
+        LifecycleStage.CRITICAL -> R.string.home_status_critical
+        LifecycleStage.DEAD -> R.string.home_status_dead
+    },
+)

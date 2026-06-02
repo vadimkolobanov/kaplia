@@ -29,7 +29,16 @@
     <string name="home_metric_mood">Mood</string>
     <string name="home_metric_health">Health</string>
     <string name="home_action_talk">Talk</string>
+    <string name="home_action_feed">Feed</string>
+    <string name="home_action_play">Play</string>
+    <string name="home_action_rest">Rest</string>
+    <string name="home_action_next_day">+Day</string>
     <string name="home_status_newborn">Just hatched! Still figuring out this world…</string>
+    <string name="home_status_growing">Getting stronger every day…</string>
+    <string name="home_status_mature">In full bloom — all is well</string>
+    <string name="home_status_aging">The years are taking their toll…</string>
+    <string name="home_status_critical">Running out of time…</string>
+    <string name="home_status_dead">Gone, but never forgotten</string>
 
     <!-- Common -->
     <string name="action_continue">Continue</string>

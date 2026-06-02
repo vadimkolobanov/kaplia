@@ -4,14 +4,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kaplia.ui.screen.HomeScreen
 import com.kaplia.ui.screen.OnboardingScreen
-import com.kaplia.ui.screen.PetState
 import com.kaplia.ui.theme.KapliaTheme
+import com.kaplia.ui.viewmodel.PetViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,17 +18,24 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             KapliaTheme {
-                var petState by remember { mutableStateOf<PetState?>(null) }
+                val vm: PetViewModel = viewModel()
+                val petState by vm.state.collectAsState()
 
-                val current = petState
-                if (current == null) {
+                val pet = petState
+                if (pet == null) {
                     OnboardingScreen(
                         onComplete = { name, pronoun ->
-                            petState = PetState(name = name, pronoun = pronoun)
+                            vm.startPet(name, pronoun)
                         },
                     )
                 } else {
-                    HomeScreen(pet = current)
+                    HomeScreen(
+                        pet = pet,
+                        onFeed = vm::feed,
+                        onPlay = vm::play,
+                        onRest = vm::rest,
+                        onNextDay = vm::advanceDay,
+                    )
                 }
             }
         }
