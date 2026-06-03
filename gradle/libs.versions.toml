@@ -11,7 +11,7 @@ lifecycleRuntimeKtx = "2.8.3"
 activityCompose = "1.13.0"
 composeBom = "2026.05.01"
 # Hilt pinned to 2.58 — last release supporting AGP 8.x; 2.59+ requires AGP 9 (Gradle 9.1+)
-hilt = "2.58"
+hilt = "2.59.2"
 ksp = "2.3.9"
 hiltNavigationCompose = "1.3.0"
 room = "2.8.4"
