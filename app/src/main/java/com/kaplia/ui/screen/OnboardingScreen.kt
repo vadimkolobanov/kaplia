@@ -11,13 +11,10 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.slideInVertically
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -52,7 +49,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kaplia.R
 import com.kaplia.ui.component.KapliaBlob
-import com.kaplia.ui.model.Pronoun
 import com.kaplia.ui.theme.DeepSpace
 import com.kaplia.ui.theme.KapliaBlue
 import com.kaplia.ui.theme.KapliaGlowCyan
@@ -66,12 +62,10 @@ import kotlin.math.sin
 
 private enum class OnboardingStep { WELCOME, AGE_GATE, CUSTOMIZE }
 
-@Suppress("LongMethod")
 @Composable
-fun OnboardingScreen(onComplete: (name: String, pronoun: Pronoun) -> Unit) {
+fun OnboardingScreen(onComplete: (name: String) -> Unit) {
     var step by rememberSaveable { mutableStateOf(OnboardingStep.WELCOME) }
     var petName by rememberSaveable { mutableStateOf("") }
-    var selectedPronoun by rememberSaveable { mutableStateOf(Pronoun.THEY) }
 
     Box(
         modifier = Modifier
@@ -92,12 +86,7 @@ fun OnboardingScreen(onComplete: (name: String, pronoun: Pronoun) -> Unit) {
             OnboardingStep.CUSTOMIZE -> CustomizeStep(
                 petName = petName,
                 onNameChange = { petName = it },
-                selectedPronoun = selectedPronoun,
-                onPronounChange = { selectedPronoun = it },
-                onHatch = {
-                    val name = petName.trim().ifEmpty { "Kaplya" }
-                    onComplete(name, selectedPronoun)
-                },
+                onHatch = { onComplete(petName.trim().ifEmpty { "Kaplya" }) },
             )
         }
     }
@@ -200,14 +189,10 @@ private fun AgeGateStep(onConfirm: () -> Unit) {
 
 // ── Customize ─────────────────────────────────────────────────────────────────
 
-@OptIn(ExperimentalLayoutApi::class)
-@Suppress("LongMethod")
 @Composable
 private fun CustomizeStep(
     petName: String,
     onNameChange: (String) -> Unit,
-    selectedPronoun: Pronoun,
-    onPronounChange: (Pronoun) -> Unit,
     onHatch: () -> Unit,
 ) {
     val focusManager = LocalFocusManager.current
@@ -251,30 +236,6 @@ private fun CustomizeStep(
             modifier = Modifier.fillMaxWidth(),
         )
 
-        Spacer(Modifier.height(36.dp))
-
-        Text(
-            text = stringResource(R.string.onboarding_pronoun_title),
-            color = TextSecondary,
-            fontSize = 16.sp,
-            textAlign = TextAlign.Center,
-        )
-
-        Spacer(Modifier.height(16.dp))
-
-        FlowRow(
-            horizontalArrangement = Arrangement.spacedBy(10.dp, Alignment.CenterHorizontally),
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-        ) {
-            Pronoun.entries.forEach { pronoun ->
-                PronounChip(
-                    label = stringResource(pronoun.labelRes),
-                    selected = pronoun == selectedPronoun,
-                    onClick = { onPronounChange(pronoun) },
-                )
-            }
-        }
-
         Spacer(Modifier.height(48.dp))
 
         GradientButton(
@@ -314,33 +275,6 @@ internal fun GradientButton(
             color = if (enabled) Color.White else TextMuted,
             fontWeight = FontWeight.SemiBold,
             fontSize = 16.sp,
-        )
-    }
-}
-
-@Composable
-private fun PronounChip(
-    label: String,
-    selected: Boolean,
-    onClick: () -> Unit,
-) {
-    val borderColor = if (selected) KapliaBlue else TextMuted.copy(alpha = 0.5f)
-    val bgColor = if (selected) KapliaBlue.copy(alpha = 0.18f) else Color.Transparent
-
-    Box(
-        modifier = Modifier
-            .clip(RoundedCornerShape(50))
-            .background(bgColor)
-            .border(1.dp, borderColor, RoundedCornerShape(50))
-            .clickable { onClick() }
-            .padding(horizontal = 20.dp, vertical = 10.dp),
-        contentAlignment = Alignment.Center,
-    ) {
-        Text(
-            text = label,
-            color = if (selected) KapliaBlue else TextSecondary,
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Medium,
         )
     }
 }

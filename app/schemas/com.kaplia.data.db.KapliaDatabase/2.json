@@ -1,0 +1,120 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "d369418f2d94ed877ea46d74ad87c08c",
+    "entities": [
+      {
+        "tableName": "kapla",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `name` TEXT NOT NULL, `hungerRate` REAL NOT NULL, `energyRate` REAL NOT NULL, `moodRate` REAL NOT NULL, `vitality` REAL NOT NULL, `birthEpochMs` INTEGER NOT NULL, `lastSeenEpochMs` INTEGER NOT NULL, `day` INTEGER NOT NULL, `hunger` REAL NOT NULL, `energy` REAL NOT NULL, `mood` REAL NOT NULL, `health` REAL NOT NULL, `stage` TEXT NOT NULL, `isDead` INTEGER NOT NULL, `deathEpochMs` INTEGER, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hungerRate",
+            "columnName": "hungerRate",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "energyRate",
+            "columnName": "energyRate",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "moodRate",
+            "columnName": "moodRate",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vitality",
+            "columnName": "vitality",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "birthEpochMs",
+            "columnName": "birthEpochMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastSeenEpochMs",
+            "columnName": "lastSeenEpochMs",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "day",
+            "columnName": "day",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hunger",
+            "columnName": "hunger",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "energy",
+            "columnName": "energy",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mood",
+            "columnName": "mood",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "health",
+            "columnName": "health",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stage",
+            "columnName": "stage",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isDead",
+            "columnName": "isDead",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deathEpochMs",
+            "columnName": "deathEpochMs",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd369418f2d94ed877ea46d74ad87c08c')"
+    ]
+  }
+}

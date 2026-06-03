@@ -3,7 +3,6 @@ package com.kaplia.domain.logic
 import com.kaplia.domain.model.LifecycleStage
 import com.kaplia.domain.model.Pet
 import com.kaplia.domain.model.PetGenome
-import com.kaplia.ui.model.Pronoun
 
 /**
  * Pure, time-driven lifecycle engine. No Android dependencies.
@@ -43,13 +42,11 @@ object PetEngine {
 
     fun newPet(
         name: String,
-        pronoun: Pronoun,
         genome: PetGenome,
         nowMs: Long,
     ): Pet =
         Pet(
             name = name,
-            pronoun = pronoun,
             genome = genome,
             birthEpochMs = nowMs,
             lastSeenEpochMs = nowMs,

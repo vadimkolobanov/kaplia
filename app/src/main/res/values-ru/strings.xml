@@ -12,14 +12,9 @@
     <string name="onboarding_age_gate_deny">Нет</string>
     <string name="onboarding_age_gate_blocked">Приложение доступно только с 18 лет</string>
 
-    <!-- Onboarding: name + pronouns -->
+    <!-- Onboarding: name -->
     <string name="onboarding_name_title">Как ты назовёшь питомца?</string>
     <string name="onboarding_name_hint">Имя</string>
-    <string name="onboarding_pronoun_title">Какие местоимения?</string>
-    <string name="onboarding_pronoun_he">он / его</string>
-    <string name="onboarding_pronoun_she">она / её</string>
-    <string name="onboarding_pronoun_they">они / их</string>
-    <string name="onboarding_pronoun_it">оно / его</string>
     <string name="onboarding_hatch_cta">Вылупить Каплю</string>
 
     <!-- Home -->

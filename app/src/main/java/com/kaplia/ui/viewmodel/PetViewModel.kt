@@ -7,7 +7,6 @@ import com.kaplia.domain.logic.PetEngine
 import com.kaplia.domain.model.Pet
 import com.kaplia.domain.model.PetGenome
 import com.kaplia.ui.model.PetState
-import com.kaplia.ui.model.Pronoun
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -47,17 +46,14 @@ class PetViewModel
             }
         }
 
-        fun startPet(
-            name: String,
-            pronoun: Pronoun,
-        ) {
+        fun startPet(name: String) {
             val genome = PetGenome(
                 hungerRate = GENOME_BASE + Random.nextFloat() * GENOME_SPREAD,
                 energyRate = GENOME_BASE + Random.nextFloat() * GENOME_SPREAD,
                 moodRate = GENOME_BASE + Random.nextFloat() * GENOME_SPREAD,
                 vitality = GENOME_BASE + Random.nextFloat() * GENOME_SPREAD,
             )
-            pet = PetEngine.newPet(name, pronoun, genome, now())
+            pet = PetEngine.newPet(name, genome, now())
             persistAndPublish()
             startTicking()
         }
@@ -110,7 +106,6 @@ class PetViewModel
 private fun Pet.toUiState(): PetState =
     PetState(
         name = name,
-        pronoun = pronoun,
         day = day,
         hunger = hunger,
         energy = energy,

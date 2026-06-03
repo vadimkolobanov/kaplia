@@ -12,14 +12,9 @@
     <string name="onboarding_age_gate_deny">No</string>
     <string name="onboarding_age_gate_blocked">This app is available for ages 18+</string>
 
-    <!-- Onboarding: name + pronouns -->
-    <string name="onboarding_name_title">What will you call them?</string>
+    <!-- Onboarding: name -->
+    <string name="onboarding_name_title">What will you name it?</string>
     <string name="onboarding_name_hint">Name</string>
-    <string name="onboarding_pronoun_title">How should I refer to them?</string>
-    <string name="onboarding_pronoun_he">he / him</string>
-    <string name="onboarding_pronoun_she">she / her</string>
-    <string name="onboarding_pronoun_they">they / them</string>
-    <string name="onboarding_pronoun_it">it / its</string>
     <string name="onboarding_hatch_cta">Hatch Kaplya</string>
 
     <!-- Home -->

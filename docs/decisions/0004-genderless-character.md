@@ -1,6 +1,6 @@
 # 0004. Бесполость персонажа — гендер выбирает пользователь
 
-- **Status:** accepted
+- **Status:** superseded by [0008](0008-no-gender-no-pronoun.md)
 - **Date:** 2026-05-19
 - **Deciders:** @vadimkolobanov
 
