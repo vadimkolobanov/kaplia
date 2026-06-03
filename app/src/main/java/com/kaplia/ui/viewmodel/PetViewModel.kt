@@ -98,8 +98,8 @@ class PetViewModel @Inject constructor(private val repository: PetRepository) : 
     }
 }
 
-private fun Pet.toUiState(): PetState {
-    return PetState(
+private fun Pet.toUiState(): PetState =
+    PetState(
         name = name,
         pronoun = pronoun,
         day = day,
@@ -110,4 +110,3 @@ private fun Pet.toUiState(): PetState {
         stage = stage,
         isDead = isDead,
     )
-}

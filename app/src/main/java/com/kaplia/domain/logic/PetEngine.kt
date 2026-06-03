@@ -46,8 +46,8 @@ object PetEngine {
         pronoun: Pronoun,
         genome: PetGenome,
         nowMs: Long,
-    ): Pet {
-        return Pet(
+    ): Pet =
+        Pet(
             name = name,
             pronoun = pronoun,
             genome = genome,
@@ -56,7 +56,6 @@ object PetEngine {
             day = 1,
             stage = LifecycleStage.CHILDHOOD,
         )
-    }
 
     fun dayFor(
         birthEpochMs: Long,
@@ -66,15 +65,14 @@ object PetEngine {
         return (elapsed / GAME_DAY_MS).toInt() + 1
     }
 
-    fun computeStage(day: Int): LifecycleStage {
-        return when (day) {
+    fun computeStage(day: Int): LifecycleStage =
+        when (day) {
             in 1..7 -> LifecycleStage.CHILDHOOD
             in 8..14 -> LifecycleStage.ADOLESCENCE
             in 15..21 -> LifecycleStage.MATURITY
             in 22..LIFESPAN_DAYS -> LifecycleStage.AGING
             else -> LifecycleStage.DEAD
         }
-    }
 
     /**
      * Advances the pet to [nowMs]: applies metric decay for elapsed real time,
@@ -121,25 +119,22 @@ object PetEngine {
         )
     }
 
-    fun feed(pet: Pet): Pet {
-        return pet.copy(
+    fun feed(pet: Pet): Pet =
+        pet.copy(
             hunger = (pet.hunger + FEED_HUNGER).coerceAtMost(1f),
             mood = (pet.mood + FEED_MOOD).coerceAtMost(1f),
         )
-    }
 
-    fun play(pet: Pet): Pet {
-        return pet.copy(
+    fun play(pet: Pet): Pet =
+        pet.copy(
             mood = (pet.mood + PLAY_MOOD).coerceAtMost(1f),
             energy = (pet.energy - PLAY_ENERGY_COST).coerceAtLeast(0f),
             hunger = (pet.hunger - PLAY_HUNGER_COST).coerceAtLeast(0f),
         )
-    }
 
-    fun rest(pet: Pet): Pet {
-        return pet.copy(
+    fun rest(pet: Pet): Pet =
+        pet.copy(
             energy = (pet.energy + REST_ENERGY).coerceAtMost(1f),
             mood = (pet.mood + REST_MOOD).coerceAtMost(1f),
         )
-    }
 }

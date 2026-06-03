@@ -17,8 +17,8 @@ class PetEngineTest {
         energy: Float = 1f,
         mood: Float = 1f,
         health: Float = 1f,
-    ): Pet {
-        return Pet(
+    ): Pet =
+        Pet(
             name = "Test",
             pronoun = Pronoun.THEY,
             genome = PetGenome(),
@@ -29,7 +29,6 @@ class PetEngineTest {
             mood = mood,
             health = health,
         )
-    }
 
     @Test
     fun computeStageMatchesAdrBoundaries() {

@@ -11,25 +11,17 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class PetRepositoryImpl @Inject constructor(private val dao: KaplaDao) : PetRepository {
-    override fun observePet(): Flow<Pet?> {
-        return dao.observe().map { it?.toDomain() }
-    }
+    override fun observePet(): Flow<Pet?> = dao.observe().map { it?.toDomain() }
 
-    override suspend fun loadPet(): Pet? {
-        return dao.getOnce()?.toDomain()
-    }
+    override suspend fun loadPet(): Pet? = dao.getOnce()?.toDomain()
 
-    override suspend fun save(pet: Pet) {
-        dao.upsert(pet.toEntity())
-    }
+    override suspend fun save(pet: Pet) = dao.upsert(pet.toEntity())
 
-    override suspend fun clear() {
-        dao.clear()
-    }
+    override suspend fun clear() = dao.clear()
 }
 
-private fun KaplaEntity.toDomain(): Pet {
-    return Pet(
+private fun KaplaEntity.toDomain(): Pet =
+    Pet(
         name = name,
         pronoun = Pronoun.valueOf(pronoun),
         genome = PetGenome(hungerRate, energyRate, moodRate, vitality),
@@ -44,10 +36,9 @@ private fun KaplaEntity.toDomain(): Pet {
         isDead = isDead,
         deathEpochMs = deathEpochMs,
     )
-}
 
-private fun Pet.toEntity(): KaplaEntity {
-    return KaplaEntity(
+private fun Pet.toEntity(): KaplaEntity =
+    KaplaEntity(
         name = name,
         pronoun = pronoun.name,
         hungerRate = genome.hungerRate,
@@ -65,4 +56,3 @@ private fun Pet.toEntity(): KaplaEntity {
         isDead = isDead,
         deathEpochMs = deathEpochMs,
     )
-}
