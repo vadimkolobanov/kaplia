@@ -5,7 +5,6 @@ import com.kaplia.data.db.KaplaEntity
 import com.kaplia.domain.model.LifecycleStage
 import com.kaplia.domain.model.Pet
 import com.kaplia.domain.model.PetGenome
-import com.kaplia.ui.model.Pronoun
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
@@ -27,7 +26,6 @@ class PetRepositoryImpl
 private fun KaplaEntity.toDomain(): Pet =
     Pet(
         name = name,
-        pronoun = Pronoun.valueOf(pronoun),
         genome = PetGenome(hungerRate, energyRate, moodRate, vitality),
         birthEpochMs = birthEpochMs,
         lastSeenEpochMs = lastSeenEpochMs,
@@ -44,7 +42,6 @@ private fun KaplaEntity.toDomain(): Pet =
 private fun Pet.toEntity(): KaplaEntity =
     KaplaEntity(
         name = name,
-        pronoun = pronoun.name,
         hungerRate = genome.hungerRate,
         energyRate = genome.energyRate,
         moodRate = genome.moodRate,

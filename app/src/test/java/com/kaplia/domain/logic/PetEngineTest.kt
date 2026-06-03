@@ -3,7 +3,6 @@ package com.kaplia.domain.logic
 import com.kaplia.domain.model.LifecycleStage
 import com.kaplia.domain.model.Pet
 import com.kaplia.domain.model.PetGenome
-import com.kaplia.ui.model.Pronoun
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -20,7 +19,6 @@ class PetEngineTest {
     ): Pet =
         Pet(
             name = "Test",
-            pronoun = Pronoun.THEY,
             genome = PetGenome(),
             birthEpochMs = birthEpochMs,
             lastSeenEpochMs = lastSeenEpochMs,

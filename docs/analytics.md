@@ -14,7 +14,7 @@
 |-----------------------------|-------------------------------------|-------------------------------------|
 | `app_open`                  | `source` (cold/warm/push)           | DAU, частота открытий               |
 | `onboarding_step_1_complete`| `age_gate_passed: bool`             | D1 funnel                           |
-| `onboarding_step_2_complete`| `pronoun`                           | Имянаречение конверсия              |
+| `onboarding_step_2_complete`| `name_length`                       | Имянаречение конверсия              |
 | `onboarding_step_3_complete`| `llm_response_ms`                   | Первый диалог конверсия             |
 | `kaplia_born`               | `genome_hash`                       | Старт цикла                         |
 | `kaplia_named`              | `name_length`                       | (имя сохраняется отдельно, в Room)  |
@@ -55,9 +55,8 @@
 Всегда устанавливать (без PII):
 
 - `kaplia_age` — текущий день жизненного цикла (1–30)
-- `lifecycle_stage` — birth/childhood/adolescence/maturity/aging
+- `lifecycle_stage` — childhood/adolescence/maturity/aging
 - `llm_tier` — haiku/sonnet
-- `pronoun` — выбранное местоимение
 
 ## KPI и алерты
 

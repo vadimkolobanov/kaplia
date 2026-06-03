@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
 
                     PetUiState.NoPet ->
                         OnboardingScreen(
-                            onComplete = { name, pronoun -> vm.startPet(name, pronoun) },
+                            onComplete = { name -> vm.startPet(name) },
                         )
 
                     is PetUiState.Alive ->

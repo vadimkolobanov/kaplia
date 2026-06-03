@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey
 data class KaplaEntity(
     @PrimaryKey val id: Int = SINGLE_ROW_ID,
     val name: String,
-    val pronoun: String,
     val hungerRate: Float,
     val energyRate: Float,
     val moodRate: Float,

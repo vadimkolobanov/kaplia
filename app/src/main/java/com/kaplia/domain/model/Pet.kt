@@ -1,7 +1,5 @@
 package com.kaplia.domain.model
 
-import com.kaplia.ui.model.Pronoun
-
 /**
  * Domain state of a living Kaplia.
  *
@@ -10,7 +8,6 @@ import com.kaplia.ui.model.Pronoun
  */
 data class Pet(
     val name: String,
-    val pronoun: Pronoun,
     val genome: PetGenome = PetGenome(),
     val birthEpochMs: Long,
     val lastSeenEpochMs: Long,

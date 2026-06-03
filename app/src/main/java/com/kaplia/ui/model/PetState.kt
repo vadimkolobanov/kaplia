@@ -4,7 +4,6 @@ import com.kaplia.domain.model.LifecycleStage
 
 data class PetState(
     val name: String,
-    val pronoun: Pronoun,
     val day: Int = 1,
     val hunger: Float = 0.75f,
     val energy: Float = 0.82f,
