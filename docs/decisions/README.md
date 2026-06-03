@@ -32,6 +32,7 @@
 | 0003 | [Permadeath с 8-го дня](0003-permadeath-from-day-8.md) | accepted |
 | 0004 | [Бесполость персонажа](0004-genderless-character.md) | accepted |
 | 0005 | [Hibernation вместо instant respawn](0005-hibernation-mechanic.md) | accepted |
+| 0006 | [DI-библиотека — Hilt](0006-di-library.md) | accepted |
 
 **Practice started:** 2026-05-19
 **Owner:** @vadimkolobanov
