@@ -78,12 +78,17 @@ class PetViewModel
         private fun startTicking() {
             tickJob?.cancel()
             tickJob = viewModelScope.launch {
-                while (true) {
+                var running = true
+                while (running) {
                     delay(TICK_INTERVAL_MS)
-                    val current = pet ?: break
-                    pet = PetEngine.advanceTo(current, now())
-                    persistAndPublish()
-                    if (pet?.isDead == true) break
+                    val current = pet
+                    if (current == null) {
+                        running = false
+                    } else {
+                        pet = PetEngine.advanceTo(current, now())
+                        persistAndPublish()
+                        running = pet?.isDead != true
+                    }
                 }
             }
         }
