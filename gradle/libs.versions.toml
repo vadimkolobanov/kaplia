@@ -7,7 +7,7 @@ coreKtx = "1.10.1"
 junit = "4.13.2"
 junitVersion = "1.3.0"
 espressoCore = "3.5.1"
-lifecycleRuntimeKtx = "2.8.3"
+lifecycleRuntimeKtx = "2.10.0"
 activityCompose = "1.13.0"
 composeBom = "2026.05.01"
 # Hilt pinned to 2.58 — last release supporting AGP 8.x; 2.59+ requires AGP 9 (Gradle 9.1+)
