@@ -32,13 +32,11 @@
     <string name="home_action_feed">Feed</string>
     <string name="home_action_play">Play</string>
     <string name="home_action_rest">Rest</string>
-    <string name="home_action_next_day">+Day</string>
-    <string name="home_status_newborn">Just hatched! Still figuring out this world…</string>
-    <string name="home_status_growing">Getting stronger every day…</string>
-    <string name="home_status_mature">In full bloom — all is well</string>
+    <string name="home_status_childhood">Just out of the egg — still getting used to the world…</string>
+    <string name="home_status_adolescence">Growing fast — full of restless energy</string>
+    <string name="home_status_maturity">In full bloom — calm and steady</string>
     <string name="home_status_aging">The years are taking their toll…</string>
-    <string name="home_status_critical">Running out of time…</string>
-    <string name="home_status_dead">Gone, but never forgotten</string>
+    <string name="home_status_dead">No longer here… but not forgotten</string>
 
     <!-- Common -->
     <string name="action_continue">Continue</string>

@@ -51,7 +51,6 @@ fun HomeScreen(
     onFeed: () -> Unit,
     onPlay: () -> Unit,
     onRest: () -> Unit,
-    onNextDay: () -> Unit,
 ) {
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
@@ -62,7 +61,7 @@ fun HomeScreen(
                 .navigationBarsPadding(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            DayCounter(day = pet.day, onNextDay = onNextDay)
+            DayCounter(day = pet.day)
 
             Spacer(Modifier.weight(1f))
 
@@ -105,42 +104,20 @@ fun HomeScreen(
 // ── Day counter ───────────────────────────────────────────────────────────────
 
 @Composable
-private fun DayCounter(
-    day: Int,
-    onNextDay: () -> Unit,
-) {
-    Row(
-        modifier = Modifier.padding(top = 16.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalAlignment = Alignment.CenterVertically,
+private fun DayCounter(day: Int) {
+    Box(
+        modifier = Modifier
+            .padding(top = 16.dp)
+            .clip(RoundedCornerShape(50))
+            .background(SpaceSurfaceVariant)
+            .padding(horizontal = 20.dp, vertical = 8.dp),
     ) {
-        Box(
-            modifier = Modifier
-                .clip(RoundedCornerShape(50))
-                .background(SpaceSurfaceVariant)
-                .padding(horizontal = 20.dp, vertical = 8.dp),
-        ) {
-            Text(
-                text = stringResource(R.string.home_day_counter, day),
-                color = TextSecondary,
-                fontSize = 13.sp,
-                fontWeight = FontWeight.Medium,
-            )
-        }
-        Box(
-            modifier = Modifier
-                .clip(RoundedCornerShape(50))
-                .background(KapliaBlue.copy(alpha = 0.20f))
-                .clickable { onNextDay() }
-                .padding(horizontal = 14.dp, vertical = 8.dp),
-        ) {
-            Text(
-                text = stringResource(R.string.home_action_next_day),
-                color = KapliaBlue,
-                fontSize = 13.sp,
-                fontWeight = FontWeight.Medium,
-            )
-        }
+        Text(
+            text = stringResource(R.string.home_day_counter, day),
+            color = TextSecondary,
+            fontSize = 13.sp,
+            fontWeight = FontWeight.Medium,
+        )
     }
 }
 
@@ -362,11 +339,10 @@ private fun DeadOverlay(name: String) {
 private fun stageStatus(stage: LifecycleStage): String =
     stringResource(
         when (stage) {
-            LifecycleStage.NEWBORN -> R.string.home_status_newborn
-            LifecycleStage.GROWING -> R.string.home_status_growing
-            LifecycleStage.MATURE -> R.string.home_status_mature
+            LifecycleStage.CHILDHOOD -> R.string.home_status_childhood
+            LifecycleStage.ADOLESCENCE -> R.string.home_status_adolescence
+            LifecycleStage.MATURITY -> R.string.home_status_maturity
             LifecycleStage.AGING -> R.string.home_status_aging
-            LifecycleStage.CRITICAL -> R.string.home_status_critical
             LifecycleStage.DEAD -> R.string.home_status_dead
         },
     )
