@@ -10,6 +10,6 @@ data class PetState(
     val energy: Float = 0.82f,
     val mood: Float = 0.88f,
     val health: Float = 0.90f,
-    val stage: LifecycleStage = LifecycleStage.NEWBORN,
+    val stage: LifecycleStage = LifecycleStage.CHILDHOOD,
     val isDead: Boolean = false,
 )

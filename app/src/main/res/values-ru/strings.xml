@@ -32,13 +32,11 @@
     <string name="home_action_feed">Покормить</string>
     <string name="home_action_play">Поиграть</string>
     <string name="home_action_rest">Отдохнуть</string>
-    <string name="home_action_next_day">+День</string>
-    <string name="home_status_newborn">Только что вылупилась! Ещё разбирается с этим миром…</string>
-    <string name="home_status_growing">Растёт и крепнет с каждым днём…</string>
-    <string name="home_status_mature">В расцвете сил — всё хорошо</string>
+    <string name="home_status_childhood">Только что из яйца — ещё привыкает к миру…</string>
+    <string name="home_status_adolescence">Быстро растёт — много беспокойной энергии</string>
+    <string name="home_status_maturity">В расцвете сил — спокойствие и уверенность</string>
     <string name="home_status_aging">Годы берут своё…</string>
-    <string name="home_status_critical">Время на исходе…</string>
-    <string name="home_status_dead">Ушла, но не забыта</string>
+    <string name="home_status_dead">Больше нет рядом… но память остаётся</string>
 
     <!-- Common -->
     <string name="action_continue">Продолжить</string>
