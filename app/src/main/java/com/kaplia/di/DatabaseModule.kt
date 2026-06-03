@@ -18,8 +18,7 @@ object DatabaseModule {
     @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context,
-    ): KapliaDatabase =
-        Room.databaseBuilder(context, KapliaDatabase::class.java, "kaplia.db").build()
+    ): KapliaDatabase = Room.databaseBuilder(context, KapliaDatabase::class.java, "kaplia.db").build()
 
     @Provides
     fun provideKaplaDao(database: KapliaDatabase): KaplaDao = database.kaplaDao()

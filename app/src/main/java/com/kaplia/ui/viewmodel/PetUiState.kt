@@ -8,5 +8,7 @@ sealed interface PetUiState {
 
     data object NoPet : PetUiState
 
-    data class Alive(val pet: PetState) : PetUiState
+    data class Alive(
+        val pet: PetState,
+    ) : PetUiState
 }
