@@ -18,6 +18,10 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,7 +33,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kaplia.R
 import com.kaplia.domain.model.LifecycleStage
+import com.kaplia.ui.component.BlobExpression
 import com.kaplia.ui.component.KapliaBlob
+import com.kaplia.ui.component.expressionFor
 import com.kaplia.ui.model.PetState
 import com.kaplia.ui.theme.DeepSpace
 import com.kaplia.ui.theme.KapliaBlue
@@ -52,6 +58,7 @@ fun HomeScreen(
     onPlay: () -> Unit,
     onRest: () -> Unit,
 ) {
+    var reactionKey by remember { mutableIntStateOf(0) }
     Box(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier
@@ -65,11 +72,7 @@ fun HomeScreen(
 
             Spacer(Modifier.weight(1f))
 
-            PetCharacter(
-                name = pet.name,
-                healthFraction = pet.health,
-                stage = pet.stage,
-            )
+            PetCharacter(pet = pet, reactionKey = reactionKey)
 
             Spacer(Modifier.weight(1f))
 
@@ -78,9 +81,18 @@ fun HomeScreen(
             Spacer(Modifier.height(16.dp))
 
             ActionButtonsRow(
-                onFeed = onFeed,
-                onPlay = onPlay,
-                onRest = onRest,
+                onFeed = {
+                    reactionKey++
+                    onFeed()
+                },
+                onPlay = {
+                    reactionKey++
+                    onPlay()
+                },
+                onRest = {
+                    reactionKey++
+                    onRest()
+                },
                 modifier = Modifier.padding(horizontal = 24.dp),
             )
 
@@ -125,21 +137,22 @@ private fun DayCounter(day: Int) {
 
 @Composable
 private fun PetCharacter(
-    name: String,
-    healthFraction: Float,
-    stage: LifecycleStage,
+    pet: PetState,
+    reactionKey: Int,
 ) {
     KapliaBlob(
         modifier = Modifier.size(220.dp),
         primaryColor = KapliaBlue,
         glowColor = KapliaGlowCyan,
-        healthFraction = healthFraction,
+        healthFraction = pet.health,
+        expression = expressionFor(pet),
+        reactionKey = reactionKey,
     )
 
     Spacer(Modifier.height(20.dp))
 
     Text(
-        text = name,
+        text = pet.name,
         color = TextPrimary,
         fontSize = 26.sp,
         fontWeight = FontWeight.Bold,
@@ -148,7 +161,7 @@ private fun PetCharacter(
     Spacer(Modifier.height(8.dp))
 
     Text(
-        text = stageStatus(stage),
+        text = stageStatus(pet.stage),
         color = TextSecondary,
         fontSize = 14.sp,
         textAlign = TextAlign.Center,
@@ -313,6 +326,7 @@ private fun DeadOverlay(name: String) {
             KapliaBlob(
                 modifier = Modifier.size(160.dp),
                 healthFraction = 0f,
+                expression = BlobExpression.DEAD,
             )
             Spacer(Modifier.height(24.dp))
             Text(
